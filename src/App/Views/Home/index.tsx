@@ -2,15 +2,6 @@ import React, { useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Utils/firebase";
 import Card from "../../Components/Card";
 
-const collections = [
-  "Browser",
-  "Communication",
-  "Development",
-  "Gaming",
-  "Office",
-  "Utilities",
-];
-
 const setCollectionState = (collection: string, setState: Function) => {
   const dynamicCollection = firebaseFirestore.collection(collection);
 
