@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faChevronCircleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   title: string;
@@ -17,7 +20,11 @@ export default function Card({ title, apps, color }: Props) {
       <div className={"CardTitle"} onClick={() => setIsOpen(!isOpen)}>
         <div className="CircleIcon" />
         <div className={"Title"}>{title}</div>
-        <FontAwesomeIcon icon={faChevronCircleLeft} color={color} rotation={isOpen ? 90 : 270} />
+        <FontAwesomeIcon
+          icon={faChevronCircleLeft}
+          color={color}
+          rotation={isOpen ? 90 : 270}
+        />
       </div>
       <div className="CardBody">
         {apps.map(
@@ -133,5 +140,8 @@ const StyledCardItemDiv = styled.div`
 
   .Title {
     flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 `;

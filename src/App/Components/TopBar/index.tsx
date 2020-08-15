@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function TopBar() {
-  const [activePage, setActivePage] = useState('');
+  const [activePage, setActivePage] = useState("");
 
   useEffect(() => {
     if (window.location.pathname.includes("repos")) {
@@ -45,6 +45,9 @@ const StyledDiv = styled.div`
 
   .Title {
     flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   small {

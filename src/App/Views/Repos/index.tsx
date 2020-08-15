@@ -75,6 +75,9 @@ const StyledRepoListItem = styled.div`
 
   .Title {
     margin-right: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .Command {
@@ -84,5 +87,8 @@ const StyledRepoListItem = styled.div`
     background-color: #31363b;
     flex: 1;
     color: #e4e4e4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 `;
