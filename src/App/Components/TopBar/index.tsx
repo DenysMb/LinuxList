@@ -17,7 +17,11 @@ export default function TopBar() {
     <StyledDiv>
       <div className="Title">
         LinuxList
-        <small>- My list of Linux applications and repositories.</small>
+        <small>
+          {/* - My list of Linux applications and repositories.{" "} */}
+            - Developed by{" "}
+            <a href="https://denysmadureira.netlify.app/#/">Denys Madureira</a>
+        </small>
       </div>
 
       <div className="Menu">
@@ -48,6 +52,12 @@ const StyledDiv = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      color: inherit;
+    }
   }
 
   small {
