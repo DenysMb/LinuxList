@@ -18,15 +18,17 @@ const setCollectionState = (collection: string, setState: Function) => {
 
 export default function Repos() {
   const [repositories, setRepositories] = useState({ Repositories: [] });
+  const [sourceList, setSourceList] = useState({ Debian: [] });
 
   useEffect(() => {
     setCollectionState("Repositories", setRepositories);
+    setCollectionState("Debian", setSourceList);
   }, []);
 
   return (
     <StyledDiv>
       <div className="DistroTitle">
-        <div className="CircleIcon" />
+        <div className="CircleIcon OpenSUSE" />
         openSUSE Tumbleweed
       </div>
       {repositories["Repositories"].map(
@@ -34,19 +36,29 @@ export default function Repos() {
           <RepoListItem name={val?.name} command={val?.command} />
         )
       )}
+      <div className="DistroTitle">
+        <div className="CircleIcon Debian" />
+        Debian
+      </div>
+      {sourceList["Debian"].map((val: { name: string; command: string }) => (
+        <RepoListItem command={val.command} />
+      ))}
     </StyledDiv>
   );
 }
 
 interface RepoListItemProps {
-  name: string;
+  name?: string;
   command: string;
 }
 
 const RepoListItem = ({ name, command }: RepoListItemProps) => (
   <StyledRepoListItem>
-    <div className={"Title"}>{name}</div>
-    <div className={"Command"}>{command}</div>
+    {name ? <div className={"Title"}>{name}</div> : null}
+    <div
+      className={"Command"}
+      dangerouslySetInnerHTML={{ __html: command.replace(/\\n/g, "<br />") }}
+    />
   </StyledRepoListItem>
 );
 
@@ -58,14 +70,26 @@ const StyledDiv = styled.div`
     border-bottom: 1px solid #e4e4e4;
     padding-bottom: 5px;
     margin-bottom: 5px;
+    margin-top: 20px;
+
+    &:first-child {
+      margin-top: 0px;
+    }
   }
 
   .CircleIcon {
     height: 10px;
     width: 10px;
     border-radius: 50%;
-    border: 3px solid #00a489;
     margin-right: 10px;
+
+    &.OpenSUSE {
+      border: 3px solid #00a489;
+    }
+
+    &.Debian {
+      border: 3px solid #df0051;
+    }
   }
 `;
 const StyledRepoListItem = styled.div`
@@ -87,7 +111,7 @@ const StyledRepoListItem = styled.div`
     background-color: #31363b;
     flex: 1;
     color: #e4e4e4;
-    white-space: nowrap;
+    white-space: pre-line;
     text-overflow: ellipsis;
     overflow: hidden;
   }
